@@ -1,6 +1,8 @@
 **/bin/
 **/obj/
 
+**/bin/Debug/
+
 .idea/
 
 *.suo
