@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QcOT8SwRr1T7jH6gwEURjm3FczG85fXmQoTkMP5D5659WWKnGm90QoMV9XtWB+nz51X8BSj7ZCp1vDiyjgMt7g==",
+  "dgSpecHash": "pd/rT1XEpiY1+gB8ZArVA7LmTfnK+JYKEEdNdCGY48YYy/fOS9/ZfuACHrhcSyKCNvOZxi8Zqie6GI0Gc2vHWg==",
   "success": true,
   "projectFilePath": "/home/kennymeneses/repositories/challenges/progi/backend/src/BidCalculation.Api/BidCalculation.Api.csproj",
   "expectedPackageFiles": [
