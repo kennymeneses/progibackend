@@ -9,14 +9,12 @@ public class CarCostCalculationHandler : ICarCostCalculationHandler
 {
     public double GetTotalCost(CarCostCalculationRequest request)
     {
-        CarBidCalculation calculation = new CarBidCalculation();
-        var decoratorFeeA = new BuyerCalculationFee(calculation);
-        var decoratorFeeB = new SellerCalculationFee(decoratorFeeA);
-        var decoratorFeeC = new AssociationCalculationFee(decoratorFeeB);
-        decoratorFeeC.AddCalculationFee(request);
+        CarBidCalculation baseCarPrice = new CarBidCalculation();
+        var buyerFeeDecorator = new BuyerCalculationFee(baseCarPrice);
+        var sellerFeeDecorator = new SellerCalculationFee(buyerFeeDecorator);
+        var associationFeeDecorator = new AssociationCalculationFee(sellerFeeDecorator);
+        associationFeeDecorator.AddCalculationFee(request);
         
-        Console.WriteLine(decoratorFeeC.AddCalculationFee(request));
-        
-        return decoratorFeeC.AddCalculationFee(request) + 100;
+        return associationFeeDecorator.AddCalculationFee(request) + CalculationConstants.StorageFee;
     }
 }
