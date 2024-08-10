@@ -1,6 +1,8 @@
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using BidCalculation.Api.Configuration.Swagger;
+using BidCalculation.Application.Handlers.V1;
+using BidCalculation.Application.Handlers.V1.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ICarCostCalculationHandler, CarCostCalculationHandler>();
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 builder.Services.AddApiVersioning(options =>
 {

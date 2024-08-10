@@ -18,7 +18,7 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     public void Configure(string? name, SwaggerGenOptions options)
     {
         Configure(options);
-        options.SchemaFilter<EnumSchemaFilter>();
+        //options.SchemaFilter<EnumSchemaFilter>();
     }
     
     public void Configure(SwaggerGenOptions options)

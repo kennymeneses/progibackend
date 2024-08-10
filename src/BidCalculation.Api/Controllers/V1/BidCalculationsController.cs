@@ -1,14 +1,17 @@
+using BidCalculation.Application.Handlers.V1.Interfaces;
 using BidCalculation.Application.Models.V1.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BidCalculation.Api.Controllers.V1;
 
-public class BidCalculationsController : BaseController
+public class BidCalculationsController(ICarCostCalculationHandler handler) : BaseController
 {
     [HttpGet]
     [ProducesErrorResponseType(typeof(ProblemDetails))]
-    public async Task<IActionResult> GetCalculation([FromQuery] CarCostCalculationRequest request, CancellationToken cancellationToken)
+    public IActionResult GetCalculation([FromQuery] CarCostCalculationRequest request, CancellationToken cancellationToken)
     {
-        return Ok("V1");
+        double result = handler.GetTotalCost(request);
+        
+        return Ok(result);
     }
 }

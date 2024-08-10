@@ -3,7 +3,7 @@ namespace BidCalculation.Application.CalculationRules;
 public static class CalculationConstants
 {
     #region BasicBuyerFeeValues
-    public const double AverageBuyerBaseFee = 10;
+    public const double AverageBuyerBaseFee = 0.1;
     public const double MinCommonCarBaseFee = 10;
     public const double MaxCommonCarBaseFee = 50;
     public const double MinLuxuryCarBaseFee = 25;
