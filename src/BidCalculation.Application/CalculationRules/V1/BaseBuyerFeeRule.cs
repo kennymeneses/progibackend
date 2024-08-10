@@ -4,9 +4,9 @@ using BidCalculation.Application.Models.V1.Requests;
 
 namespace BidCalculation.Application.CalculationRules.V1;
 
-public class BaseBuyerFeeRule : ICalculationCostRule
+public class BaseBuyerFeeRule : ICalculationFeeRule
 {
-    public double GetSubTotal(CarCostCalculationRequest request)
+    public double GetFeeCalculation(CarCostCalculationRequest request)
     {
         double initialSubtotal = CalculationConstants.AverageBuyerBaseFee * request.CarCost;
         

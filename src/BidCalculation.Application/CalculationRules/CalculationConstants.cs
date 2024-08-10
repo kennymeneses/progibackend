@@ -2,10 +2,32 @@ namespace BidCalculation.Application.CalculationRules;
 
 public static class CalculationConstants
 {
+    #region BasicBuyerFeeValues
+    public const double AverageBuyerBaseFee = 10;
+    public const double MinCommonCarBaseFee = 10;
+    public const double MaxCommonCarBaseFee = 50;
+    public const double MinLuxuryCarBaseFee = 25;
+    public const double MaxLuxuryCarBaseFee = 200;
+    
+    #endregion
 
-    public static double AverageBuyerBaseFee = 10;
-    public static double MinCommonCarBaseFee = 10;
-    public static double MaxCommonCarBaseFee = 50;
-    public static double MinLuxuryCarBaseFee = 25;
-    public static double MaxLuxuryCarBaseFee = 200;
+    #region SellerSpecialFeeValues
+    public const double SellerCarCommonFee = 0.02;
+    public const double SellerCarLuxuryFee = 0.04;
+    
+    #endregion
+    
+    #region AssociationFeeValues
+    public const double MinMountFirstRange = 1;
+    public const double MaxMountFirstRange = 500;
+    public const double MaxMountSecondRange = 1000;
+    public const double MaxMountThirdRange = 3000;
+
+    public const double FirstRangeAssociationFee = 5;
+    public const double SecondRangeAssociationFee = 10;
+    public const double ThirdRangeAssociationFee = 15;
+    public const double FourthRangeAssociationFee = 20;
+    #endregion
+
+    public const double FixedStorageFee = 100;
 }

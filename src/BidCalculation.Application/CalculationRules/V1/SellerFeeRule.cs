@@ -4,11 +4,11 @@ using BidCalculation.Application.Models.V1.Requests;
 
 namespace BidCalculation.Application.CalculationRules.V1;
 
-public class SellerFeeRule : ICalculationCostRule
+public class SellerFeeRule : ICalculationFeeRule
 {
-    public double GetSubTotal(CarCostCalculationRequest request)
+    public double GetFeeCalculation(CarCostCalculationRequest request)
     {
-        double sellerPercentage = request.Type == VehicleType.Luxury ? 0.04 : 0.02;
+        double sellerPercentage = request.Type == VehicleType.Luxury ? CalculationConstants.SellerCarLuxuryFee : CalculationConstants.SellerCarCommonFee;
 
         return request.CarCost * sellerPercentage;
     }
