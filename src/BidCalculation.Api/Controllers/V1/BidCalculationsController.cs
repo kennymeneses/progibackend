@@ -8,9 +8,9 @@ public class BidCalculationsController(ICarCostCalculationHandler handler) : Bas
 {
     [HttpGet]
     [ProducesErrorResponseType(typeof(ProblemDetails))]
-    public IActionResult GetCalculation([FromQuery] CarCostCalculationRequest request, CancellationToken cancellationToken)
+    public IActionResult GetCalculation([FromQuery] CarCostCalculationRequest request)
     {
-        double result = handler.GetTotalCost(request);
+        double result = handler.Handle(request);
         
         return Ok(result);
     }

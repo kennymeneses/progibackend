@@ -38,15 +38,3 @@ public static class CalculationConstants
     
     public const double StorageFee = 100;
 }
-
-public static class ConfigurationConstants
-{
-    #region SwaggerValuesConfiguration
-    
-    public const int DefaultApiVersion = 1;
-    public const int MinorApiVersion = 0;
-    public const string GroupNameFormat = "'v'VVV";
-    public const string SwaggerJsonEndpoint = "/swagger/{0}/swagger.json";
-    
-    #endregion
-}

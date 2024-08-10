@@ -11,15 +11,11 @@ public class BuyerCalculationFee : DecoratorFee
 
     public override double AddCalculationFee(CarCostCalculationRequest request)
     {
-        double initialSubtotal = CalculationConstants.AverageBuyerBaseFee * request.CarCost;
+        double buyerFeeCalculated = CalculationConstants.AverageBuyerBaseFee * request.CarCost;
         
         double basicBuyerFee = request.Type is VehicleType.Luxury
-            ? Math.Clamp(initialSubtotal, CalculationConstants.MinLuxuryCarBaseFee, CalculationConstants.MaxLuxuryCarBaseFee)
-            : Math.Clamp(initialSubtotal, CalculationConstants.MinCommonCarBaseFee, CalculationConstants.MaxCommonCarBaseFee);
-
-        var a = base.AddCalculationFee(request) + basicBuyerFee;
-        Console.WriteLine("BuyerCalculation: " + a);
-        
+            ? Math.Clamp(buyerFeeCalculated, CalculationConstants.MinLuxuryCarBaseFee, CalculationConstants.MaxLuxuryCarBaseFee)
+            : Math.Clamp(buyerFeeCalculated, CalculationConstants.MinCommonCarBaseFee, CalculationConstants.MaxCommonCarBaseFee);
 
         return base.AddCalculationFee(request) + basicBuyerFee;
     }

@@ -4,5 +4,5 @@ namespace BidCalculation.Application.Handlers.V1.Interfaces;
 
 public interface ICarCostCalculationHandler
 {
-    double GetTotalCost(CarCostCalculationRequest request);
+    double Handle(CarCostCalculationRequest request);
 }

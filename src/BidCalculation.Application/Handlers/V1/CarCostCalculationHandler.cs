@@ -7,9 +7,9 @@ namespace BidCalculation.Application.Handlers.V1;
 
 public class CarCostCalculationHandler : ICarCostCalculationHandler
 {
-    public double GetTotalCost(CarCostCalculationRequest request)
+    public double Handle(CarCostCalculationRequest request)
     {
-        CarBidCalculation baseCarPrice = new CarBidCalculation();
+        var baseCarPrice = new CarBidCalculation();
         var buyerFeeDecorator = new BuyerCalculationFee(baseCarPrice);
         var sellerFeeDecorator = new SellerCalculationFee(buyerFeeDecorator);
         var associationFeeDecorator = new AssociationCalculationFee(sellerFeeDecorator);

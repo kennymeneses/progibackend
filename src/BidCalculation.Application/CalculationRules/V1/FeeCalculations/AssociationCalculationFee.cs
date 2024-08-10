@@ -21,11 +21,7 @@ public class AssociationCalculationFee : DecoratorFee
                     => CalculationConstants.ThirdRangeAssociationFee,
                 _ => CalculationConstants.FourthRangeAssociationFee
             };
-
-        var a = base.AddCalculationFee(request) + associationFee;
         
-        Console.WriteLine("SellerCalculation: " + a);
-
         return base.AddCalculationFee(request) + associationFee;
     }
 }

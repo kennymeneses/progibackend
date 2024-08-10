@@ -6,15 +6,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BidCalculation.Api.Configuration.Swagger;
 
-public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
+public class ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+    : IConfigureNamedOptions<SwaggerGenOptions>
 {
-    private readonly IApiVersionDescriptionProvider _provider;
-    
-    public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
-    {
-        _provider = provider;
-    }
-    
     public void Configure(string? name, SwaggerGenOptions options)
     {
         Configure(options);
@@ -23,7 +17,7 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     
     public void Configure(SwaggerGenOptions options)
     {
-        foreach (var description in _provider.ApiVersionDescriptions)
+        foreach (var description in provider.ApiVersionDescriptions)
         {
             options.SwaggerDoc(
                 description.GroupName,
@@ -35,10 +29,9 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     {
         var info = new OpenApiInfo()
         {
-            Title = "Progi - Bid Calculation Tool API .NET 8",
+            Title = ConfigurationConstants.ApiTitle,
             Version = desc.ApiVersion.ToString()
         };
-        
         return info;
     }
     

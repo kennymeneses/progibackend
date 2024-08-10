@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using BidCalculation.Application.Models.V1.Enums;
 
 namespace BidCalculation.Application.Models.V1.Requests;
