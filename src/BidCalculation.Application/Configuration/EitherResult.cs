@@ -4,15 +4,17 @@ public class EitherResult<TSuccess, TError>
 {
     private readonly TSuccess? _success;
     private readonly TError? _error;
-    public bool IsError { get;}
+
     public TSuccess? Value => _success;
+    public TError? Error => _error;
+    public bool IsError { get;}
     
-    public EitherResult(TSuccess success)
+    private EitherResult(TSuccess success)
     {
         _success = success;
     }
 
-    public EitherResult(TError error)
+    private EitherResult(TError error)
     {
         IsError = true;
         _error = error;

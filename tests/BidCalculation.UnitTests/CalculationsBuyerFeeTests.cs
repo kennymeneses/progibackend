@@ -1,53 +1,42 @@
 using BidCalculation.Application.CalculationRules;
 using BidCalculation.Application.CalculationRules.V1.FeeCalculations;
-using BidCalculation.Application.Models.V1.Enums;
-using BidCalculation.Application.Models.V1.Requests;
 using FluentAssertions;
 using NSubstitute;
+using Helper = BidCalculation.TestHelper.TestHelper;
+using Constants = BidCalculation.TestHelper.HelperConstants;
 
 namespace BidCalculation.UnitTests;
 
 public class CalculationsBuyerFeeTests
 {
     private readonly BaseCarCalculationCost _baseCarCalculationCost;
-    private readonly DecoratorFee _decoratorFee;
     private readonly BuyerCalculationFee _sut;
 
     public CalculationsBuyerFeeTests()
     {
         _baseCarCalculationCost = Substitute.For<BaseCarCalculationCost>();
-        _decoratorFee = Substitute.For<DecoratorFee>(_baseCarCalculationCost);
         _sut = new BuyerCalculationFee(_baseCarCalculationCost);
     }
 
     [Fact]
-    public void It_ShouldReturnBuyerFeeSuccessfully_WhenRequestHasCommonTypeAnd()
+    public void It_ShouldReturnBuyerFeeSuccessfully_WhenRequestHasCommonType()
     {
-        var request = new CarCostCalculationRequest
-        {
-            CarCost = 501,
-            Type = VehicleType.Common
-        };
+        _baseCarCalculationCost.AddCalculationFee(Helper.CommonCalculationRequest()).Returns(Constants.CommonVehiclePrice);
 
-        _baseCarCalculationCost.AddCalculationFee(request).Returns(501);
-
-        var result = _sut.AddCalculationFee(request);
-
-        result.Value.Should().NotBe(50);
+        var result = _sut.AddCalculationFee(Helper.CommonCalculationRequest());
+        
         result.IsError.Should().BeFalse();
-        result.Value.Should().Be(551);
+        result.Value.Should().Be(Constants.CommonBasicFee);
     }
-
+    
     [Fact]
-    public void It_ShouldReturnError_WhenCalculationConstantIsInvalid()
+    public void It_ShouldReturnBuyerFeeSuccessfully_WhenRequestHasLuxuryType()
     {
-        CarCostCalculationRequest request = null;
-        
-        _baseCarCalculationCost.AddCalculationFee(request).Returns(501);
-        
-        var result = _sut.AddCalculationFee(request);
+        _baseCarCalculationCost.AddCalculationFee(Helper.LuxuryCalculationRequest()).Returns(Constants.LuxuryVehiclePrice);
 
-        result.IsError.Should().BeTrue();
-        result.Should().NotBeNull();
+        var result = _sut.AddCalculationFee(Helper.LuxuryCalculationRequest());
+        
+        result.IsError.Should().BeFalse();
+        result.Value.Should().Be(Constants.LuxuryBasicFee);
     }
 }

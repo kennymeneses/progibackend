@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BidCalculation.Api.Controllers.V1;
 
-public class BidCalculationsController(ICarCostCalculationHandler handler) : BaseController
+public class BidCalculationsController(ICarCostCalculationHandler carCostCalculationHandler) : BaseController
 {
     [HttpPost]
     [ProducesResponseType(typeof(CarCostCalculationResponse), StatusCodes.Status200OK)]
     [ProducesErrorResponseType(typeof(ProblemDetails))]
     public IActionResult GetCalculation([FromBody] CarCostCalculationRequest request)
     {
-        EitherResult<CarCostCalculationResponse, Exception> result = handler.Handle(request);
+        var result = carCostCalculationHandler.Handle(request);
 
         return result.Match(
             calculation => Ok(calculation),
