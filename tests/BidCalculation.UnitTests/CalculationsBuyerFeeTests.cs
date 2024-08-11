@@ -7,13 +7,13 @@ using NSubstitute;
 
 namespace BidCalculation.UnitTests;
 
-public class BuyerFeedCalculationsTests
+public class CalculationsBuyerFeeTests
 {
     private readonly BaseCarCalculationCost _baseCarCalculationCost;
     private readonly DecoratorFee _decoratorFee;
     private readonly BuyerCalculationFee _sut;
 
-    public BuyerFeedCalculationsTests()
+    public CalculationsBuyerFeeTests()
     {
         _baseCarCalculationCost = Substitute.For<BaseCarCalculationCost>();
         _decoratorFee = Substitute.For<DecoratorFee>(_baseCarCalculationCost);
