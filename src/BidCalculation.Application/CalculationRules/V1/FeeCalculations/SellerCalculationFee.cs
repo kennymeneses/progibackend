@@ -1,23 +1,23 @@
-using BidCalculation.Application.CalculationRules.V1.FeeCalculations.Interfaces;
+using BidCalculation.Application.Configuration;
 using BidCalculation.Application.Models.V1.Enums;
 using BidCalculation.Application.Models.V1.Requests;
 
 namespace BidCalculation.Application.CalculationRules.V1.FeeCalculations;
 
-public sealed class SellerCalculationFee : DecoratorFee, ISingleFee
+public sealed class SellerCalculationFee : DecoratorFee
 {
     public SellerCalculationFee(BaseCarCalculationCost baseCalculation) : base(baseCalculation)
     {
     }
     
-    public double CalculatedFee { get; set; }
+    public override double CalculatedFee { get; protected set; }
     
-    public override double AddCalculationFee(CarCostCalculationRequest request)
+    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
         double feePercentage = request.Type == VehicleType.Luxury ? CalculationConstants.SellerCarLuxuryFee : CalculationConstants.SellerCarCommonFee;
         
         CalculatedFee = request.CarCost * feePercentage;
         
-        return base.AddCalculationFee(request) + CalculatedFee;
+        return base.AddCalculationFee(request).Value + CalculatedFee;
     }
 }

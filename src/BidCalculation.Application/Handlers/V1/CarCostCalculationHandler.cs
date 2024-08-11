@@ -11,9 +11,9 @@ public sealed class CarCostCalculationHandler : ICarCostCalculationHandler
 {
     public EitherResult<CarCostCalculationResponse, Exception> Handle(CarCostCalculationRequest request)
     {
-        if (request.CarCost < 1)
+        if (request.CarCost < 5)
         {
-            return new EitherResult<CarCostCalculationResponse, Exception>(new InvalidOperationException(CalculationConstants.InvalidBaseCarPrice));
+            return new InvalidOperationException(CalculationConstants.InvalidBaseCarPrice);
         }
         
         var baseCarPrice = new BaseCalculationCar();
@@ -21,12 +21,12 @@ public sealed class CarCostCalculationHandler : ICarCostCalculationHandler
         var sellerFeeDecorator = new SellerCalculationFee(buyerFeeDecorator);
         var associationFeeDecorator = new AssociationCalculationFee(sellerFeeDecorator);
         
-        return new EitherResult<CarCostCalculationResponse, Exception>(new CarCostCalculationResponse()
+        return new CarCostCalculationResponse()
         {
-            Total = associationFeeDecorator.AddCalculationFee(request) + CalculationConstants.StorageFee,
+            Total = associationFeeDecorator.AddCalculationFee(request).Value + CalculationConstants.StorageFee,
             BasicBuyerFee = buyerFeeDecorator.CalculatedFee,
             SellerSpecialFee = sellerFeeDecorator.CalculatedFee,
             AssociationFee = associationFeeDecorator.CalculatedFee
-        });
+        };
     }
 }
