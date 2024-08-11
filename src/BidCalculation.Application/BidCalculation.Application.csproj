@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CalculationRules\V1\FeeCalculations\ISingleFee\" />
+  </ItemGroup>
+
 </Project>

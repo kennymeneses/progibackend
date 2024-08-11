@@ -2,7 +2,7 @@ using BidCalculation.Application.Models.V1.Requests;
 
 namespace BidCalculation.Application.CalculationRules;
 
-public class CarBidCalculation : BaseCarCalculationCost
+public class BaseCalculationCar : BaseCarCalculationCost
 {
     public override double AddCalculationFee(CarCostCalculationRequest request)
     {

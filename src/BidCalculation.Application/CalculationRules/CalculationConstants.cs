@@ -37,4 +37,11 @@ public static class CalculationConstants
 
     
     public const double StorageFee = 100;
+    
+    
+    #region CalculationErrorMessages
+
+    public const string InvalidBaseCarPrice = "The vehicle cost is not valid.";
+
+    #endregion
 }

@@ -2,7 +2,7 @@ using BidCalculation.Application.Models.V1.Enums;
 
 namespace BidCalculation.Application.Models.V1.Requests;
 
-public class CarCostCalculationRequest
+public sealed record CarCostCalculationRequest
 {
     public required double CarCost { get; init; }
 
