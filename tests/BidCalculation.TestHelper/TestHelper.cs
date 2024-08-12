@@ -11,13 +11,16 @@ namespace BidCalculation.TestHelper;
 
 public static class TestHelper
 {
-    private static readonly JsonSerializerOptions Options = new()
+    public static readonly JsonSerializerOptions Options = new()
     {
-        PropertyNameCaseInsensitive = true,
+        PropertyNameCaseInsensitive = false,
         WriteIndented = true,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         Converters =
         {
-            new JsonStringEnumConverter(), new DateOnlyJsonConverter(), new TimeOnlyJsonConverter()
+            new JsonNumberEnumConverter(),
+            new DateOnlyJsonConverter(),
+            new TimeOnlyJsonConverter()
         }
     };
     
@@ -27,7 +30,7 @@ public static class TestHelper
     }
 
     public static async Task<TResponse> Create<TRequest, TResponse>(this HttpClient client, string uri,
-        TRequest request, HttpStatusCode statusCode = HttpStatusCode.Created)
+        TRequest request, HttpStatusCode statusCode = HttpStatusCode.OK)
     {
         HttpResponseMessage httpResponseMessage = await client.PostAsJsonAsync(uri, request, Options);
         httpResponseMessage.StatusCode.Should().Be(statusCode);
@@ -51,5 +54,27 @@ public static class TestHelper
             CarCost = HelperConstants.LuxuryVehiclePrice,
             Type = VehicleType.Luxury
         };
+    }
+
+    public static CarCostCalculationRequest InvalidCalculationRequest()
+    {
+        return new CarCostCalculationRequest()
+        {
+            CarCost = 0,
+            Type = VehicleType.Luxury
+        };
+    }
+}
+
+public class JsonNumberEnumConverter : JsonConverter<VehicleType>
+{
+    public override VehicleType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        return (VehicleType)reader.GetInt32();
+    }
+    
+    public override void Write(Utf8JsonWriter writer, VehicleType value, JsonSerializerOptions options)
+    {
+        writer.WriteNumberValue((int)value);
     }
 }
