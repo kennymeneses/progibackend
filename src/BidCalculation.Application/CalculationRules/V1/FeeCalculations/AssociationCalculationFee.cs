@@ -1,27 +1,31 @@
+using BidCalculation.Application.Configuration;
 using BidCalculation.Application.Models.V1.Requests;
+using Constants = BidCalculation.Application.CalculationRules.CalculationConstants;
 
 namespace BidCalculation.Application.CalculationRules.V1.FeeCalculations;
 
-public class AssociationCalculationFee : DecoratorFee
+public sealed class AssociationCalculationFee : DecoratorFee
 {
     public AssociationCalculationFee(BaseCarCalculationCost baseCalculation) : base(baseCalculation)
     {
     }
-
-    public override double AddCalculationFee(CarCostCalculationRequest request)
+    
+    public override double CalculatedFee { get; protected set; }
+    
+    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
-        double associationFee = 
+        CalculatedFee = 
             request.CarCost switch
             { 
-                >= CalculationConstants.MinMountFirstRange and <= CalculationConstants.MaxMountFirstRange 
-                    => CalculationConstants.FirstRangeAssociationFee,
-                > CalculationConstants.MaxMountFirstRange and <= CalculationConstants.MaxMountSecondRange 
-                    => CalculationConstants.SecondRangeAssociationFee,
-                > CalculationConstants.MaxMountSecondRange and <= CalculationConstants.MaxMountThirdRange 
-                    => CalculationConstants.ThirdRangeAssociationFee,
-                _ => CalculationConstants.FourthRangeAssociationFee
+                >= Constants.MinMountFirstRange and <= Constants.MaxMountFirstRange 
+                    => Constants.FirstRangeAssociationFee,
+                > Constants.MaxMountFirstRange and <= Constants.MaxMountSecondRange 
+                    => Constants.SecondRangeAssociationFee,
+                > Constants.MaxMountSecondRange and <= Constants.MaxMountThirdRange 
+                    => Constants.ThirdRangeAssociationFee,
+                _ => Constants.FourthRangeAssociationFee
             };
         
-        return base.AddCalculationFee(request) + associationFee;
+        return base.AddCalculationFee(request).Value + CalculatedFee;
     }
 }

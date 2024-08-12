@@ -5,18 +5,18 @@ public static class CalculationConstants
     #region BasicBuyerFeeValues
     
     public const double AverageBuyerBaseFee = 0.1;
-    public const double MinCommonCarBaseFee = 10;
-    public const double MaxCommonCarBaseFee = 50;
-    public const double MinLuxuryCarBaseFee = 25;
-    public const double MaxLuxuryCarBaseFee = 200;
+    public const double MinCommonBaseFee = 10;
+    public const double MaxCommonBaseFee = 50;
+    public const double MinLuxuryBaseFee = 25;
+    public const double MaxLuxuryBaseFee = 200;
     
     #endregion
 
     
     #region SellerSpecialFeeValues
     
-    public const double SellerCarCommonFee = 0.02;
-    public const double SellerCarLuxuryFee = 0.04;
+    public const double CommonSellerFee = 0.02;
+    public const double LuxurySellerFee = 0.04;
     
     #endregion
     
@@ -34,7 +34,13 @@ public static class CalculationConstants
     public const double FourthRangeAssociationFee = 20;
     
     #endregion
-
     
     public const double StorageFee = 100;
+    
+    
+    #region CalculationErrorMessages
+
+    public const string InvalidBaseCarPrice = "The vehicle cost is not valid.";
+
+    #endregion
 }
