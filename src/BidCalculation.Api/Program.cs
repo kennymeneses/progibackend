@@ -6,6 +6,7 @@ builder.Services.AddControllers();
 builder.Services.AddCalculationHandler();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerVersioning();
+builder.Services.AddCorsPolicy();
 
 var app = builder.Build();
 
@@ -16,6 +17,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(ConfigurationConstants.CorsPolicyName);
 
 app.UseAuthorization();
 
