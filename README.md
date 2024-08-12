@@ -16,5 +16,11 @@ Before proceeding, ensure that the following prerequisites are met:
 
 Execute `dotnet run --launch-profile https` command in: `src/BidCalculation.Api/`
 
+You can hit this endpoint `https://localhost:7000/api/v1/BidCalculations` using a POST method with this body request:
+`{
+"carCost": 398,
+"type": 0
+}`
+
 You can also open this endpoint in your web browser:
 `https://localhost:7000/swagger/index.html?urls.primaryName=V1`
