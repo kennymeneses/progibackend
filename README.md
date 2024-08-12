@@ -8,12 +8,13 @@ This guide provides step-by-step instructions to run this api locally
 Before proceeding, ensure that the following prerequisites are met:
 
 - **.NET Version 8:** Make sure to have .NET version 8 installed on your machine.
-- **.Docker:** Make sure Docker deamon is running.
+- Make sure you have run this command first: `dotnet dev-certs https --trust`
 
 ## Running the Project Locally
 
-**Create appsettings.Local.json file and use the `Local` profile from `launchSettings.json`:**
+**Use the `https` profile from `launchSettings.json`:**
 
-To run the project in **Local** environment:
-open in web browser this endpoint:
+Execute `dotnet run --launch-profile https` command in: `src/BidCalculation.Api/`
 
+You can also open this endpoint in your web browser:
+`https://localhost:7000/swagger/index.html?urls.primaryName=V1`

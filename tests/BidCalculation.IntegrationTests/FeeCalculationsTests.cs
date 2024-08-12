@@ -34,7 +34,9 @@ public class FeeCalculationsTests : IClassFixture<BidCalculationApiFactory>
     [Fact]
     public async Task CalculateTotalCost_WhenCarCostIsMinorThanOne_ShouldReturnError()
     {
-        HttpResponseMessage httpResponseMessage = await _client.PostAsJsonAsync(Constants.CalculationFeesUrl, Helper.InvalidCalculationRequest(), Helper.Options);
+        HttpResponseMessage httpResponseMessage = 
+            await _client.PostAsJsonAsync(Constants.CalculationFeesUrl, Helper.InvalidCalculationRequest(), Helper.Options);
+        
         httpResponseMessage.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
         ProblemDetails? result = await httpResponseMessage.Content.ReadFromJsonAsync<ProblemDetails>(Helper.Options);
         result!.Detail.Should().Be(CalculationConstants.InvalidBaseCarPrice);
