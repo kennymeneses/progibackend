@@ -12,7 +12,7 @@ public sealed class CarCostCalculationHandler : ICarCostCalculationHandler
 {
     public EitherResult<CarCostCalculationResponse, Exception> Handle(CarCostCalculationRequest request)
     {
-        if (request.CarCost < 1)
+        if (request.CarCost < Constants.MinValidCarPrice)
         {
             return new InvalidOperationException(Constants.InvalidBaseCarPrice);
         }

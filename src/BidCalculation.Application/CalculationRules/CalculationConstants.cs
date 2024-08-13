@@ -49,6 +49,7 @@ public static class CalculationConstants
     
     #region CalculationErrorMessages
 
+    public const int MinValidCarPrice = 1;
     public const string InvalidBaseCarPrice = "The vehicle cost is not valid.";
     public const string FormatErrorMessage = "The value cant be format as decimal";
 
