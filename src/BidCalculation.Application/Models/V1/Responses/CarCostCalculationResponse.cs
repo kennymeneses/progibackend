@@ -2,8 +2,8 @@ namespace BidCalculation.Application.Models.V1.Responses;
 
 public sealed record CarCostCalculationResponse
 {
-    public double Total { get; init; }
-    public double BasicBuyerFee { get; init; }
-    public double SellerSpecialFee { get; init; }
-    public double AssociationFee { get; init; }
+    public decimal Total { get; init; }
+    public decimal BasicBuyerFee { get; init; }
+    public decimal SellerSpecialFee { get; init; }
+    public decimal AssociationFee { get; init; }
 }

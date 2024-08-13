@@ -11,13 +11,11 @@ public sealed class SellerCalculationFee : DecoratorFee
     {
     }
     
-    public override double CalculatedFee { get; protected set; }
-    
-    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
+    public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
-        double feePercentage = request.Type == VehicleType.Luxury ? Constants.LuxurySellerFee : Constants.CommonSellerFee;
+        decimal feePercentage = request.Type == VehicleType.Luxury ? Constants.LuxurySellerFee : Constants.CommonSellerFee;
         
-        CalculatedFee = request.CarCost * feePercentage;
+        CalculatedFee = request.CarCost.ToDecimal().Value * feePercentage;
         
         return base.AddCalculationFee(request).Value + CalculatedFee;
     }

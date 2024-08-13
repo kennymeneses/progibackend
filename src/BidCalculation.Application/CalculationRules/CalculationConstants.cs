@@ -15,8 +15,8 @@ public static class CalculationConstants
     
     #region SellerSpecialFeeValues
     
-    public const double CommonSellerFee = 0.02;
-    public const double LuxurySellerFee = 0.04;
+    public const decimal CommonSellerFee = 0.02m;
+    public const decimal LuxurySellerFee = 0.04m;
     
     #endregion
     
@@ -28,19 +28,22 @@ public static class CalculationConstants
     public const double MaxMountSecondRange = 1000;
     public const double MaxMountThirdRange = 3000;
 
-    public const double FirstRangeAssociationFee = 5;
-    public const double SecondRangeAssociationFee = 10;
-    public const double ThirdRangeAssociationFee = 15;
-    public const double FourthRangeAssociationFee = 20;
+    public const decimal FirstRangeAssociationFee = 5.00m;
+    public const decimal SecondRangeAssociationFee = 10.00m;
+    public const decimal ThirdRangeAssociationFee = 15.00m;
+    public const decimal FourthRangeAssociationFee = 20.00m;
     
     #endregion
     
-    public const double StorageFee = 100;
+    public const decimal StorageFee = 100;
     
+    public const int DecimalCount = 2;
+    public const string NumericFormat = "F2";
     
     #region CalculationErrorMessages
 
     public const string InvalidBaseCarPrice = "The vehicle cost is not valid.";
+    public const string FormatErrorMessage = "The value cant be format as decimal";
 
     #endregion
 }

@@ -10,9 +10,7 @@ public sealed class AssociationCalculationFee : DecoratorFee
     {
     }
     
-    public override double CalculatedFee { get; protected set; }
-    
-    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
+    public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
         CalculatedFee = 
             request.CarCost switch
@@ -25,7 +23,7 @@ public sealed class AssociationCalculationFee : DecoratorFee
                     => Constants.ThirdRangeAssociationFee,
                 _ => Constants.FourthRangeAssociationFee
             };
-        
+
         return base.AddCalculationFee(request).Value + CalculatedFee;
     }
 }
