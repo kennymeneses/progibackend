@@ -5,9 +5,20 @@ namespace BidCalculation.Application.CalculationRules.V1.FeeCalculations;
 
 public abstract class DecoratorFee(BaseCarCalculationCost baseCalculation) : BaseCarCalculationCost
 {
-    public virtual double CalculatedFee { get; protected set; }
+    private decimal _calculatedFee;
     
-    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
+    public virtual decimal CalculatedFee
+    {
+        get => Math.Round(_calculatedFee, 2);
+        protected set => _calculatedFee = value;
+    }
+
+    public virtual void Initialize()
+    {
+        CalculatedFee = 0;
+    }
+    
+    public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
         return baseCalculation.AddCalculationFee(request);
     }

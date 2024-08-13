@@ -5,8 +5,8 @@ namespace BidCalculation.Application.CalculationRules;
 
 public class BaseCalculationCar : BaseCarCalculationCost
 {
-    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
+    public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
-        return request.CarCost;
+        return request.CarCost.ToDecimal();
     }
 }

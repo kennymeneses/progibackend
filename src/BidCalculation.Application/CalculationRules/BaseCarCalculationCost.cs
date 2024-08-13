@@ -5,5 +5,5 @@ namespace BidCalculation.Application.CalculationRules;
 
 public abstract class BaseCarCalculationCost
 {
-    public abstract EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request);
+    public abstract EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request);
 }

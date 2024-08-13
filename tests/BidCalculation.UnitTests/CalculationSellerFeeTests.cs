@@ -21,7 +21,7 @@ public class CalculationSellerFeeTests
     [Fact]
     public void It_ShouldReturnSellerFeeSuccessfully_WhenRequestHasCommonType()
     {
-        _baseCarCalculationCost.AddCalculationFee(Helper.CommonCalculationRequest()).Returns(Constants.CommonVehiclePrice);
+        _baseCarCalculationCost.AddCalculationFee(Helper.CommonCalculationRequest()).Returns(Constants.CommonVehiclePriceD);
         
         var result = _sut.AddCalculationFee(Helper.CommonCalculationRequest());
         
@@ -32,7 +32,7 @@ public class CalculationSellerFeeTests
     [Fact]
     public void It_ShouldReturnSellerFeeSuccessfully_WhenRequestHasLuxuryType()
     {
-        _baseCarCalculationCost.AddCalculationFee(Helper.LuxuryCalculationRequest()).Returns(Constants.LuxuryVehiclePrice);
+        _baseCarCalculationCost.AddCalculationFee(Helper.LuxuryCalculationRequest()).Returns(Constants.LuxuryVehiclePriceD);
         
         var result = _sut.AddCalculationFee(Helper.LuxuryCalculationRequest());
         

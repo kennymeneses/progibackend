@@ -11,15 +11,13 @@ public sealed class BuyerCalculationFee : DecoratorFee
     {
     }
     
-    public override double CalculatedFee { get; protected set; }
-    
-    public override EitherResult<double,Exception> AddCalculationFee(CarCostCalculationRequest request)
+    public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)
     {
-        double buyerFeeCalculated = CalculationConstants.AverageBuyerBaseFee * request.CarCost;
+        double buyerFeeCalculated = Constants.AverageBuyerBaseFee * request.CarCost;
         
         CalculatedFee = request.Type is VehicleType.Luxury
-            ? Math.Clamp(buyerFeeCalculated, Constants.MinLuxuryBaseFee, Constants.MaxLuxuryBaseFee)
-            : Math.Clamp(buyerFeeCalculated, Constants.MinCommonBaseFee, Constants.MaxCommonBaseFee);
+            ? Math.Clamp(buyerFeeCalculated, Constants.MinLuxuryBaseFee, Constants.MaxLuxuryBaseFee).ToDecimal().Value
+            : Math.Clamp(buyerFeeCalculated, Constants.MinCommonBaseFee, Constants.MaxCommonBaseFee).ToDecimal().Value;
         
         return (base.AddCalculationFee(request).Value + CalculatedFee);
     }

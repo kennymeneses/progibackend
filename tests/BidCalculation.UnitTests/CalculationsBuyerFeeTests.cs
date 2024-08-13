@@ -1,5 +1,6 @@
 using BidCalculation.Application.CalculationRules;
 using BidCalculation.Application.CalculationRules.V1.FeeCalculations;
+using BidCalculation.Application.Configuration;
 using FluentAssertions;
 using NSubstitute;
 using Helper = BidCalculation.TestHelper.TestHelper;
@@ -21,7 +22,7 @@ public class CalculationsBuyerFeeTests
     [Fact]
     public void It_ShouldReturnBuyerFeeSuccessfully_WhenRequestHasCommonType()
     {
-        _baseCarCalculationCost.AddCalculationFee(Helper.CommonCalculationRequest()).Returns(Constants.CommonVehiclePrice);
+        _baseCarCalculationCost.AddCalculationFee(Helper.CommonCalculationRequest()).Returns(Constants.CommonVehiclePriceD);
 
         var result = _sut.AddCalculationFee(Helper.CommonCalculationRequest());
         
@@ -32,7 +33,7 @@ public class CalculationsBuyerFeeTests
     [Fact]
     public void It_ShouldReturnBuyerFeeSuccessfully_WhenRequestHasLuxuryType()
     {
-        _baseCarCalculationCost.AddCalculationFee(Helper.LuxuryCalculationRequest()).Returns(Constants.LuxuryVehiclePrice);
+        _baseCarCalculationCost.AddCalculationFee(Helper.LuxuryCalculationRequest()).Returns(Constants.LuxuryVehiclePriceD);
 
         var result = _sut.AddCalculationFee(Helper.LuxuryCalculationRequest());
         
