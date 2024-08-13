@@ -11,6 +11,7 @@ public static class ConfigurationConstants
     public const string ApiTitle = "Progi - Bid Calculation Tool API .NET 8";
 
     #endregion
-
+    
+    
     public const string CorsPolicyName = "BidCalculationPolicy";
 }
