@@ -1,5 +1,6 @@
 using BidCalculation.Application.Configuration;
 using BidCalculation.Application.Models.V1.Requests;
+using Constants = BidCalculation.Application.CalculationRules.CalculationConstants;
 
 namespace BidCalculation.Application.CalculationRules.V1.FeeCalculations;
 
@@ -9,13 +10,13 @@ public abstract class DecoratorFee(BaseCarCalculationCost baseCalculation) : Bas
     
     public virtual decimal CalculatedFee
     {
-        get => Math.Round(_calculatedFee, 2);
+        get => Math.Round(_calculatedFee, Constants.DecimalCount);
         protected set => _calculatedFee = value;
     }
 
     public virtual void Initialize()
     {
-        CalculatedFee = 0;
+        CalculatedFee = Constants.InitialCalculatedFee;
     }
     
     public override EitherResult<decimal,Exception> AddCalculationFee(CarCostCalculationRequest request)

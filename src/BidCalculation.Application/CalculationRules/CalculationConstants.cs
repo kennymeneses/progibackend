@@ -33,12 +33,19 @@ public static class CalculationConstants
     public const decimal ThirdRangeAssociationFee = 15.00m;
     public const decimal FourthRangeAssociationFee = 20.00m;
     
-    #endregion
-    
     public const decimal StorageFee = 100;
     
+    #endregion
+    
+    
+    #region MathRoundConfiguration
+
+    public const int InitialCalculatedFee = 0;
     public const int DecimalCount = 2;
     public const string NumericFormat = "F2";
+    
+    #endregion
+    
     
     #region CalculationErrorMessages
 
